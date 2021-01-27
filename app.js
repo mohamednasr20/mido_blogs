@@ -7,17 +7,32 @@ app.set("view engine", "ejs");
 app.listen(3000);
 
 app.get("/", (req, res) => {
-  // res.send("<p>home page</p>");
-  // res.sendFile("./views/home.html", { root: __dirname });
-  res.render("index");
+  const blogs = [
+    {
+      title: "yoshi finds eggs",
+      snippet:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, ipsum",
+    },
+    {
+      title: "mario finds stars",
+      snippet:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, ipsum",
+    },
+    {
+      title: "how to defeat bowser",
+      snippet:
+        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam, ipsum",
+    },
+  ];
+  res.render("index", { title: "Home", blogs });
 });
 
 app.get("/about", (req, res) => {
-  res.render("about");
+  res.render("about", { title: "About" });
 });
 
 app.get("/blogs/create", (req, res) => {
-  res.render("create");
+  res.render("create", { title: "Create A New Blog" });
 });
 
 // app.get("/about-me", (req, res) => {
@@ -25,5 +40,5 @@ app.get("/blogs/create", (req, res) => {
 // });
 
 app.use((req, res) => {
-  res.status(404).render("404");
+  res.status(404).render("404", { title: "404" });
 });
