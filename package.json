@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mohamednasr20/mido_blogs#readme",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1"
   }
 }
