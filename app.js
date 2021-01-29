@@ -1,10 +1,17 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
 
-app.set("view engine", "ejs");
+const dbURI =
+  "mongodb+srv://mohamednasr86:m4102005m@cluster0.cfnr6.mongodb.net/node-tuts?retryWrites=true&w=majority";
 
-app.listen(3000);
+mongoose
+  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((result) => app.listen(3000))
+  .catch((err) => console.log(err));
+
+app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
