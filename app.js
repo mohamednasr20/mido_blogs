@@ -13,6 +13,7 @@ mongoose
 app.set("view engine", "ejs");
 
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.redirect("/blogs");
@@ -28,6 +29,19 @@ app.get("/blogs", (req, res) => {
       res.render("index", { title: "all blogs", blogs: reuslt });
     })
     .catch((err) => console.log(err));
+});
+
+app.post("/blogs", (req, res) => {
+  const blog = new Blog(req.body);
+
+  blog
+    .save()
+    .then((result) => {
+      res.redirect("/blogs");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 app.get("/blogs/create", (req, res) => {
