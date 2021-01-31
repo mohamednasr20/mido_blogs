@@ -12,9 +12,13 @@ const blog_index = (req, res) => {
 const blog_details = (req, res) => {
   const id = req.params.id;
 
-  Blog.findById(id).then((result) => {
-    res.render("details", { title: "blog-details", blog: result });
-  });
+  Blog.findById(id)
+    .then((result) => {
+      res.render("details", { title: "blog-details", blog: result });
+    })
+    .catch((err) => {
+      res.render("404", { title: "blog not found" });
+    });
 };
 
 const blog_create_get = (req, res) => {
